@@ -6,6 +6,7 @@ namespace ProjectApp.Controllers
 {
     public class ProjectController : Controller
     {
+        //så bara interface referens, ej mock eftersom vi använder dependency injection. Program.cs styr.
         private IProjectService _projectService;
         public ProjectController(IProjectService projectService) { _projectService = projectService; }
         
@@ -13,7 +14,7 @@ namespace ProjectApp.Controllers
         public ActionResult Index()
         {
             List<Project> projects = _projectService.GetAllByUserName("Start a pre-study");
-            return View();
+            return View(projects); //det data vi skickar från action metod i controller kommer att hamna i en motsvarande cshtml vy!
         }
 
         // GET: ProjectController/Details/5

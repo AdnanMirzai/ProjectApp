@@ -1,7 +1,13 @@
+using ProjectApp.Core;
+using ProjectApp.Core.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args); //used to add new frameworks
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Här är kopplingen! Dependency Injection! När applikationen körs och kompilator hittar referens till interfacet ser den till att objektet som skapas är av typen Mock!!
+builder.Services.AddScoped<IProjectService, MockProjectService>();
 
 var app = builder.Build();
 
